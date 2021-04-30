@@ -14,8 +14,17 @@ function App() {
   }, []); 
 
   const onAddBtnClick = useCallback(() => {
-      setTodoList([...todoList, { id: v4(), name: textInput, isCompleted: false }])
+      setTodoList([{ id: v4(), name: textInput, isCompleted: false }, ...todoList]);
+      setTextInput("");
   }, [todoList, textInput]);
+
+  const onBtnClickCheckId = useCallback((id) => {
+    setTodoList(prevState => 
+      prevState.map(todo => 
+        todo.id === id ? {...todo, isCompleted:true} : todo
+        )
+      );
+  }, []);
 
   return (
     <>
@@ -27,7 +36,7 @@ function App() {
       value={textInput}
       onChange={onTextInputChange}
       ></Textfield>
-      <TodoList todoList={todoList}/>
+      <TodoList todoList={todoList} onBtnClickCheckId={onBtnClickCheckId}/>
     </>
   );
 }
