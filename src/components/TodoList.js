@@ -5,7 +5,8 @@ export default function TodoList( {todoList, onBtnClickCheckId} ) {
     return (
         <>
         {
-            todoList.map(todo => <Todo key={todo.id} todo={todo} onBtnClickCheckId={onBtnClickCheckId}/>) 
+            todoList.map(todo => 
+            <Todo key={todo.id} todo={todo} onBtnClickCheckId={onBtnClickCheckId}/>) 
         }
         </>
     )
